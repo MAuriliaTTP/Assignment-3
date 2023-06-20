@@ -3,25 +3,32 @@ class ShoppingCart {
     this.items = {};
   }
 
-  addToCart(item, quantity) {
-    if (this.items[item]) {
-      this.items[item] += quantity;
+  addToCart(item, quantity, price) {
+    const itemId = item;
+    if (this.items[itemId]) {
+      this.items[itemId].quantity += quantity;
     } else {
-      this.items[item] = quantity;
+      this.items[itemId] = { quantity, price };
     }
   }
 
   removeFromCart(item, quantity) {
-    if (this.items[item]) {
-      this.items[item] -= quantity;
-      if (this.items[item] <= 0) {
-        delete this.items[item];
+    const itemId = item;
+    if (this.items[itemId]) {
+      this.items[itemId].quantity -= quantity;
+      if (this.items[itemId].quantity <= 0) {
+        delete this.items[itemId];
       }
     }
   }
 
   calculateTotal() {
-    
+    let total = 0;
+    for (const itemId in this.items) {
+      const { quantity, price } = this.items[itemId];
+      total += price * quantity;
+    }
+    return total;
   }
 }
 
