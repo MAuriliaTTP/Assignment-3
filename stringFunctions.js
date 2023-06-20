@@ -2,12 +2,13 @@ function reverseString(str) {
     return str.split('').reverse().join('');
   }
   
-  function isPalindrome(str) {
-    const reversed = reverseString(str);
-    return str === reversed;
-  }
+function isPalindrome(str) {
+  const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const reversed = reverseString(cleanedStr);
+  return cleanedStr === reversed;
+}
   
-  module.exports = {
+module.exports = {
     reverseString,
     isPalindrome,
   };

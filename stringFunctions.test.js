@@ -11,19 +11,21 @@ describe('stringFunctions', () => {
     });
 
     test('should handle special characters and spaces', () => {
-      expect(reverseString('!@#$%^&*()   ')).toBe('   )(*&^%$#@!');
+      expect(reverseString(')(*&^%$#@!   ')).toBe('   !@#$%^&*()');
     });
   });
 
   describe('Tests for isPalindrome', () => {
-    test('should return true for a palindrome', () => {
+    test('Return true for a palindrome', () => {
       expect(isPalindrome('racecar')).toBe(true);
     });
 
-    test('should return false for a non-palindrome', () => {
+    test('Return false for a non-palindrome', () => {
       expect(isPalindrome('hello')).toBe(false);
     });
 
-    
+    test('Should be able to handle special characters and/or whitespaces', () => {
+        expect(isPalindrome('A man, a plan, a canal. Panama')).toBe(true);
+      });
   });
 });
